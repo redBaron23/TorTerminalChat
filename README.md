@@ -23,7 +23,27 @@ TerminalChat showcases the power and potential of AI in software development. By
 
 ## Getting Started
 
-To run TerminalChat locally, follow these steps:
+To run TerminalChat, you have two options:
+
+### Option 1: Run from Docker Hub
+
+1. Make sure you have Docker installed on your machine.
+
+2. Pull the Docker image from Docker Hub:
+
+```
+    docker pull redbaron23/terminalchat
+```
+
+3. Run the Docker container:
+
+```
+    docker run -p 80:80 --name terminalchat-container redbaron23/terminalchat
+```
+
+4. Open your web browser and visit `http://localhost` to access the TerminalChat application.
+
+### Option 2: Build and Run Locally
 
 1. Make sure you have Docker installed on your machine.
 
@@ -52,6 +72,24 @@ To run TerminalChat locally, follow these steps:
 ```
 
 6. Open your web browser and visit `http://localhost` to access the TerminalChat application.
+
+## Docker Hub
+
+TerminalChat is available on Docker Hub, making it easy to pull and run the application using Docker.
+
+To pull the Docker image from Docker Hub, run the following command:
+
+```
+    docker pull redbaron23/terminalchat
+```
+
+To run the Docker container from Docker Hub, use the following command:
+
+```
+    docker run -p 80:80 --name terminalchat-container redbaron23/terminalchat
+```
+
+This will pull the TerminalChat image from Docker Hub and start the container, making the application accessible at `http://localhost`.
 
 ## Contributing
 
