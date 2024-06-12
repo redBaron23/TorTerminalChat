@@ -35,6 +35,7 @@
         display: flex;
         flex-direction: column;
         height: 80vh;
+        position: relative;
       }
       .terminal-box {
         flex: 1;
@@ -94,6 +95,22 @@
         color: #ffffff;
         opacity: 0.7;
       }
+      .powered-by {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 16px;
+        color: #fff;
+        opacity: 0.7;
+      }
+      .powered-by a {
+        color: #fff;
+        text-decoration: none;
+        opacity: 1;
+      }
+      .powered-by a:hover {
+        text-decoration: underline;
+      }
       @media screen and (max-width: 600px) {
         body {
           font-size: 16px;
@@ -118,6 +135,9 @@
         .terminal-input input[type="text"] {
           font-size: 1rem;
         }
+        .powered-by {
+          font-size: 14px;
+        }
       }
     </style>
   </head>
@@ -140,6 +160,10 @@
             required
           />
         </form>
+      </div>
+      <div class="powered-by">
+        Powered by
+        <a href="https://patriciotoledo.ar" target="_blank">PatricioToledo</a>
       </div>
     </div>
 
