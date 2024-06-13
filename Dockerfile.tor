@@ -14,8 +14,7 @@ COPY ./tor-config/torrc /etc/tor/torrc
 RUN apk update && \
     apk add --no-cache tor && \
     mkdir -p /var/lib/tor/hidden_service && \
-    chmod 700 /var/lib/tor/hidden_service && \
-    (cat /var/lib/tor/hidden_service/hostname || echo 'Hostname not available.')
+    chmod 700 /var/lib/tor/hidden_service
 
 # Create a directory for mounting the hidden_service volume
 RUN mkdir /hidden_service_volume
@@ -33,6 +32,7 @@ RUN chmod +x /start.sh
 
 # Define an environment variable to specify custom hidden_service path
 ENV HIDDEN_SERVICE_PATH=/var/lib/tor/hidden_service
+
 
 # Start Tor and the web server using a shell script that checks for HIDDEN_SERVICE_PATH
 CMD ["/start.sh"]
