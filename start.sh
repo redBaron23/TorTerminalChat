@@ -11,12 +11,12 @@ if ! id -u tor >/dev/null 2>&1; then
 fi
 
 # Check if the hidden_folder volume is mounted
-if [ -d "hidden_service" ]; then
-  echo "Custom hidden_service found. Copying to $HIDDEN_SERVICE_PATH."
+if [ -d "/hidden_service_volume" ]; then
+  echo "Custom hidden_service volume found. Copying to $HIDDEN_SERVICE_PATH."
   # Copy the custom hidden_folder to Tor's hidden service directory
-  cp -a hidden_service/. "$HIDDEN_SERVICE_PATH"
+  cp -a /hidden_service_volume/. "$HIDDEN_SERVICE_PATH"
 else
-  echo "No custom hidden_service found. Using default hidden_service directory."
+  echo "No custom hidden_service volume found. Using default hidden_service directory."
 fi
 
 chown -R tor:tor "$HIDDEN_SERVICE_PATH"

@@ -1,0 +1,9 @@
+services:
+  terminalchat-tor:
+    image: redbaron23/terminalchat-tor:latest
+    container_name: terminalchat-tor
+    restart: always
+    volumes:
+      - /home/manfred/projects/TerminalChat/hidden_service:/var/lib/tor/hidden_service
+    ports:
+      - "80:80"
