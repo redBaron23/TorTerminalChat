@@ -18,4 +18,4 @@ def handle_new_message(message):
     emit('new_message', {'name': name, 'message': message}, broadcast=True)
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=80, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port=80)

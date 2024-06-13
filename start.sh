@@ -16,5 +16,5 @@ fi
 
 echo "The Onion URL is $(cat "$HIDDEN_SERVICE_PATH/hostname")"
 
-# Start your application
-python app.py
+# Start your application with Gunicorn
+gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:80 app:app
