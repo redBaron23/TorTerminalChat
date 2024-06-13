@@ -1,12 +1,16 @@
-FROM python:3.9-slim
+#!/bin/sh
 
-WORKDIR /app
+# Start Tor
+tor -f /etc/tor/torrc &
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+# Check if the hidden_service volume is mounted
+if [ -d "/hidden_service_volume" ]; then
+  echo "Custom hidden_service found. Copying to $HIDDEN_SERVICE_PATH."
+  # Copy the custom hidden_service to Tor's hidden service directory
+  cp -a /hidden_service_volume/. "$HIDDEN_SERVICE_PATH"
+else
+  echo "No custom hidden_service found. Using default hidden_service directory."
+fi
 
-COPY . .
-
-EXPOSE 80
-
-CMD ["python", "app.py"]
+# Start your application
+python app.py

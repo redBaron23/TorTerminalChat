@@ -17,6 +17,8 @@ RUN apk update && \
     chmod 700 /var/lib/tor/hidden_service && \
     (cat /var/lib/tor/hidden_service/hostname || echo 'Hostname not available.')
 
+# Create a directory for mounting the hidden_service volume
+RUN mkdir /hidden_service_volume
 
 # Copy requirements.txt and install the dependencies
 COPY requirements.txt requirements.txt
