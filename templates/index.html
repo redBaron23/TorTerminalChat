@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terminal Chat</title>
+    <title>OnionChat</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap"
@@ -142,7 +142,7 @@
     </style>
   </head>
   <body>
-    <h1>Leave me a message</h1>
+    <h1>Yep, another onion chat</h1>
     <div class="terminal-container">
       <div id="terminal-box" class="terminal-box">
         {% for msg in messages %}
@@ -151,7 +151,7 @@
         </div>
         {% endfor %}
         <form id="message-form" class="terminal-input">
-          <span>{{ request.remote_addr }} $</span>
+          <span>{{ name }} $</span>
           <input
             type="text"
             id="message-input"

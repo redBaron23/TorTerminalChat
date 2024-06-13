@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
+import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -7,9 +8,13 @@ socketio = SocketIO(app)
 
 messages = []
 
+# List of random names
+names = ['Onion', 'Garlic', 'Leek', 'Chive', 'Shallot', 'Scallion', 'Pepper', 'Ginger', 'Turmeric', 'Saffron']
+
 @app.route('/')
 def index():
-    return render_template('index.html', messages=messages)
+    name = random.choice(names) + str(random.randint(1, 100))
+    return render_template('index.html', messages=messages, name=name)
 
 @socketio.on('new_message')
 def handle_new_message(message):
