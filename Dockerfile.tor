@@ -17,8 +17,6 @@ RUN apk update && \
     chmod 700 /var/lib/tor/hidden_service && \
     (cat /var/lib/tor/hidden_service/hostname || echo 'Hostname not available.')
 
-# Copy the existing hidden_service directory
-COPY ./tor-config/hidden_service /var/lib/tor/hidden_service
 
 # Copy requirements.txt and install the dependencies
 COPY requirements.txt requirements.txt
@@ -27,7 +25,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose the HTTP port
 EXPOSE 80
 
-# Start Tor and the web server using a shell script
+# Copy the start script
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
+
+# Define an environment variable to specify custom hidden_service path
+ENV HIDDEN_SERVICE_PATH=/var/lib/tor/hidden_service
+
+# Start Tor and the web server using a shell script that checks for HIDDEN_SERVICE_PATH
 CMD ["/start.sh"]

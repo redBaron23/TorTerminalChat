@@ -75,6 +75,45 @@ To run TerminalChat, you have two options:
 
 6. Open your web browser and visit `http://localhost` to access the TerminalChat application.
 
+### Option 3: Build and Run Locally and on Tor Network
+
+1. **Optional: Prepare Hidden Service Configuration**
+
+   If you want to use a custom hidden service configuration:
+
+   - Create a `hidden_service` folder under `tor-config`.
+   - Include the following files:
+     - `hostname` (the hostname of your hidden service)
+     - `hs_ed25519_public_key` (optional; if not provided, it will be generated)
+     - `hs_ed25519_secret_key` (optional; if not provided, it will be generated)
+
+   These files are necessary for configuring your hidden service on the Tor network.
+
+2. **Build the Docker Image**
+
+   Build the Docker image using the provided Dockerfile (`Dockerfile.tor`):
+
+   ```bash
+       docker build -t tor-chat -f Dockerfile.tor .
+   ```
+
+3. Run the Docker Container
+
+Run the Docker container with the following command:
+
+    ```
+        docker run -d \
+            --name my-tor-container \
+            -v $(pwd)/tor-config/hidden_service:/var/lib/tor/hidden_service \
+            -p 80:80 \
+            tor-chat
+    ```
+
+- --name my-tor-container: Assigns the name my-tor-container to the Docker container.
+- -v $(pwd)/tor-config/hidden_service:/var/lib/tor/hidden_service: Mounts the tor-config/hidden_service directory on your host to /var/lib/tor/hidden_service inside the container, allowing the container to use the specified hidden service configuration.
+- -p 80:80: Maps port 80 on the host to port 80 inside the container, enabling access to your application over HTTP.
+- tor-chat: Specifies the name of the Docker image to run.
+
 ## Docker Hub
 
 TerminalChat is available on Docker Hub, making it easy to pull and run the application using Docker.
@@ -82,13 +121,23 @@ TerminalChat is available on Docker Hub, making it easy to pull and run the appl
 To pull the Docker image from Docker Hub, run the following command:
 
 ```
+
     docker pull redbaron23/terminalchat
+
 ```
 
 To run the Docker container from Docker Hub, use the following command:
 
 ```
+
     docker run -p 80:80 --name terminalchat-container redbaron23/terminalchat
+
+```
+
+Or if you prefer to use the tor network version
+
+```
+    docker run -p 80:80 --name terminalchat-container redbaron23/terminalchat-tor
 ```
 
 This will pull the TerminalChat image from Docker Hub and start the container, making the application accessible at `http://localhost`.
@@ -112,3 +161,7 @@ TerminalChat was inspired by the concept of command-line interfaces and the desi
 If you have any questions, suggestions, or feedback, please feel free to contact the project maintainer at contact@patriciotoledo.ar.
 
 Happy chatting with TerminalChat, the AI-powered chat application!
+
+```
+
+```
