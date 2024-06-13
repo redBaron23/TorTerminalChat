@@ -8,8 +8,13 @@ socketio = SocketIO(app)
 
 messages = []
 
-# List of random names
-names = ['Onion', 'Garlic', 'Leek', 'Chive', 'Shallot', 'Scallion', 'Pepper', 'Ginger', 'Turmeric', 'Saffron']
+# Expanded list of random names
+names = [
+    'Onion', 'Garlic', 'Leek', 'Chive', 'Shallot', 'Scallion', 'Pepper', 'Ginger', 'Turmeric', 'Saffron',
+    'Basil', 'Cilantro', 'Dill', 'Parsley', 'Rosemary', 'Thyme', 'Oregano', 'Tarragon', 'Mint', 'Sage',
+    'Paprika', 'Cardamom', 'Clove', 'Nutmeg', 'Cinnamon', 'Vanilla', 'BayLeaf', 'Cumin', 'Fennel', 'Anise',
+    'Fenugreek', 'Marjoram', 'Chervil', 'Lovage', 'Savory', 'Sorrel', 'Tamarind', 'Caraway', 'Celery', 'Mustard'
+]
 
 @app.route('/')
 def index():
@@ -17,8 +22,9 @@ def index():
     return render_template('index.html', messages=messages, name=name)
 
 @socketio.on('new_message')
-def handle_new_message(message):
-    name = request.remote_addr  # Use user's IP address as name
+def handle_new_message(data):
+    name = data['name']  # Use the username from the client
+    message = data['message']
     messages.append({'name': name, 'message': message})
     emit('new_message', {'name': name, 'message': message}, broadcast=True)
 

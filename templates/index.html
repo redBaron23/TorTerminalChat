@@ -152,6 +152,7 @@
         {% endfor %}
         <form id="message-form" class="terminal-input">
           <span>{{ name }} $</span>
+          <input type="hidden" id="username" value="{{ name }}" />
           <input
             type="text"
             id="message-input"
@@ -175,11 +176,13 @@
       const terminalBox = document.getElementById("terminal-box");
       const messageForm = document.getElementById("message-form");
       const messageInput = document.getElementById("message-input");
+      const usernameInput = document.getElementById("username");
 
       messageForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const message = messageInput.value;
-        socket.emit("new_message", message);
+        const name = usernameInput.value;
+        socket.emit("new_message", { name: name, message: message });
         messageInput.value = "";
       });
 
