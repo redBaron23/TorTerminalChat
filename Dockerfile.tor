@@ -12,7 +12,7 @@ COPY ./tor-config/torrc /etc/tor/torrc
 
 # Install Tor and necessary dependencies
 RUN apk update && \
-    apk add --no-cache tor && \
+    apk add --no-cache tor build-base libffi-dev && \
     mkdir -p /var/lib/tor/hidden_service && \
     chmod 700 /var/lib/tor/hidden_service
 
