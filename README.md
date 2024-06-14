@@ -101,16 +101,16 @@ To run TorTerminalChat, you have two options:
 
 Run the Docker container with the following command:
 
-    ```
+    ```bash
         docker run -d \
             --name my-tor-container \
-            -v $(pwd)/tor-config/hidden_service:/var/lib/tor/hidden_service \
+            -v $(pwd)/tor-config/hidden_service:/hidden_service_volume \
             -p 80:80 \
             tor-chat
     ```
 
 - --name my-tor-container: Assigns the name my-tor-container to the Docker container.
-- -v $(pwd)/tor-config/hidden_service:/var/lib/tor/hidden_service: Mounts the tor-config/hidden_service directory on your host to /var/lib/tor/hidden_service inside the container, allowing the container to use the specified hidden service configuration.
+- -v $(pwd)/tor-config/hidden_service:/hidden_service_volume: Mounts the tor-config/hidden_service directory on your host to /hidden_service_volume inside the container, allowing the container to use the specified hidden service configuration.
 - -p 80:80: Maps port 80 on the host to port 80 inside the container, enabling access to your application over HTTP.
 - tor-chat: Specifies the name of the Docker image to run.
 
