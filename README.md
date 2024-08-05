@@ -161,7 +161,3 @@ TorTerminalChat was inspired by the concept of command-line interfaces and the d
 If you have any questions, suggestions, or feedback, please feel free to contact the project maintainer at contact@patriciotoledo.ar.
 
 Happy chatting with TorTerminalChat, the AI-powered chat application!
-
-```
-
-```
